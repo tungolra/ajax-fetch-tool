@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script defer src="/javascripts/fetch.js"></script>
+  </head>
+  <body class="container">
+    <h1 class="jumbotron text-center">Movies with OMDb</h1>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-6">
+        <form action="/" method="GET">
+          <div class="input-group">
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              placeholder="Enter a Movie"
+            />
+            <span class="input-group-btn">
+              <button class="btn btn-success" type="submit">Go!</button>
+            </span>
+          </div>
+        </form>
+      </div>
+      <div>
+        <% if (resultsT.Response == "False") { %>
+        <div>No movies match the title of: <%=titleInput%></div>
+        <%} else { %>
+        <div>
+          <%= resultsT.Title %>
+          <br />
+          <%= resultsT.Year %>
+          <br />
+          <%= resultsT.Actors %>
+          <br />
+          <img src="<%=resultsT.Poster%>" alt="" />
+          <br />
+          <button class="toggle-plot">View Plot</button>
+          <div class="view-plot" style="display: block">
+            <%= resultsT.Plot%>
+          </div>
+          <% }; %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
